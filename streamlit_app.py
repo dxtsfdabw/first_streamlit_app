@@ -48,14 +48,10 @@ try:
 except URLError as e:
    streamlit.error()
 
-
-# Don't run anything past here while we troubleshoot
-streamlit.stop()
-
 # Snowflake related functions
 def get_fruit_load_list():
     # Snowflake DB Access
-    with my_cnx.cursor() as my_cur
+    with my_cnx.cursor() as my_cur:
          my_cur.execute("select * from fruit_load_list")
          return my_cur.fetchall()
 
@@ -66,6 +62,10 @@ if streamlit,button('Get Fruit Load List'):
 
 streamlit.header("The fruit load list contains ")
 streamlit.dataframe(my_data_row)
+
+
+# Don't run anything past here while we troubleshoot
+streamlit.stop()
 
 # Allow the end user to add a fruit to the list
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
